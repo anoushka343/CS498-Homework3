@@ -1,1 +1,12 @@
+Part 1: 
+1. My proposed Row Key for the EV dataset would be to use the VIN, Postal Code, and Model. 
+This avoids hotspotting because a VIN is unqiue and it is a randomly assigned number. 
+This means that the row keys get spread out evenly across all the Bigtable servers, and data
+won't pile up in one place. Cars from the same city and even year will be on different servers
+because the VINs are different. The effect on searching by city with this row key would be 
+inefficient. City isn't included in the key I chose, and Bigtable isn't able to query rows for 
+certain cities. Due to this, every row would have to be checked. Similarily, searching by make
+would also be inefficeint because it isn't included in the key. Model exists in the key, but that
+is at the very edn so without knowing the VIN or postal code, Bigtable won't be able to query cars
+by make or model. 
 
