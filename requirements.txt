@@ -1,1 +1,3 @@
-
+pands
+pymongo: MongoClient, WriteConcern, ReadPreference
+flask: Flask, request, jsonify
