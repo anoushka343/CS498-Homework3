@@ -48,10 +48,9 @@ def read_primary():
 #read prefencer to secondary node
 @app.route("/count-bmw-secondary", methods=["GET"])
 def read_secondary():
-  read_sec_collection = collection.with_options(read_preference=ReadPreference.SECONDARY)
+  read_sec_collection = collection.with_options(read_preference=ReadPreference.SECONDARY_PREFERRED)
   counts_found = read_sec_collection.count_documents({"Make": "BMW"})
   return jsonify({"count": counts_found})
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", port=8080)
-
